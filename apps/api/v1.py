@@ -29,13 +29,17 @@ class Sandbox:
         pass
 
 class Directions:
-    def GET(self, src=None, dest=None):
+    def GET(self, src=None, dest=None, loadsJson=False):
         """  """
+        slender = web.ctx.shared['slender']
         if src and dest:
+            #web.header('Content-Type', 'application/json')
             src = src.replace(" ", "+")
             dest = dest.replace(" ", "+")
             url = "https://maps.googleapis.com/maps/api/directions/json?origin=%s&destination=%s&mode=walking&sensor=false" % (src, dest)
-            return urllib2.urlopen(url).read()
+            data = urllib2.urlopen(url).read()            
+            jdata = json.loads(data)
+            return slender.directions(jdata['routes'][0]['legs'][0])                
         return "i gets get and post, fo real!"
 
 class TincanSMS:
