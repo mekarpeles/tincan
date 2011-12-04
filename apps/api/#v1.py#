@@ -42,7 +42,7 @@ class TincanSMS:
     def GET(self):
         web.header('Content-Type', 'text/xml')
         resp = twiml.Response()
-        resp.sms("Please enter your current location:")
+        resp.sms("Please enter your current lo 5cation:")
         return str(resp)
 
 class TincanVoice:
