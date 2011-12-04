@@ -1,0 +1,4 @@
+*.pyc
+*.sw*
+*~
+private_conf.py
