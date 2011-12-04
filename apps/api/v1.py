@@ -34,11 +34,21 @@ class Sandbox:
                         {"value":"Hello, you were the first to answer."}
                         ]}
                 ]}
-                        
-                
+                                        
         url = "http://api.tropo.com/"
         path = "1.0/sessions"
         url = private_conf['webapi']['tropo']['url'] 
+
+        params = urllib.urlencode(i)
+        headers = {"Content-type": "application/x-www-form-urlencoded",
+                   "Accept": "text/plain"}
+        conn = httplib.HTTPConnection(url)
+        response = conn.request("POST", path, params, headers)
+        data = response.read()
+        print(data)
+        conn.close()
+        return data
+
         return "these are not the apis we're looking for... Carry on, carry on"
         #return webapi_hook(url, data)
 
