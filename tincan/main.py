@@ -11,7 +11,7 @@
 import waltz
 import subapps.rest as api
 
-urls = (#"/api/v1", api.subapp,
+urls = ("/api/v1", api.subapp,
         "/?",     "routes.home.Index",
         ".*",   "Error")
 
