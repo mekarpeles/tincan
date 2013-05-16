@@ -5,8 +5,7 @@ import apps
 import subapps.v1 as v1
 
 urls = ("/api/v1", v1.subapp,
-        "/key",   "routes.signup.ApiKey",
-        "/?",     "routes.home.Home",
+        "/?",     "routes.home.Index",
         ".*",   "Error")
 
 sessions = {}
