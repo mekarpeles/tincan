@@ -11,7 +11,7 @@
 import json
 from waltz import web, slender
 from api.v1 import phone
-from conigs.config import TWILIO
+from configs.config import TWILIO
 
 urls = ("/tincan/sms/?", "TincanSMS",
         "/tincan/voice/(.+)/?", "TincanVoice",
@@ -32,7 +32,7 @@ class TincanVoice:
                                })
         return phone.call(TWILIO['sid'],
                           TWILIO['token'], 
-                          TWILIO['number'],
+                          TWILIO['#'],
                           number)
 
 class Directions:
@@ -73,7 +73,7 @@ class Api:
         return "Tincan API, v1.0"
 
 class Error:
-    def GET(self, **kwargs)
+    def GET(self, **kwargs):
         raise web.notfound("404")
 
 subapp = web.application(urls, globals())

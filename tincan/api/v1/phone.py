@@ -16,7 +16,7 @@ from twilio import twiml
 from twilio.rest import TwilioRestClient
 
 GMAPS_URL = "https://maps.googleapis.com/maps/api/directions/json?"
-TWILIO_URL = "http://demo.twilio.com/welcome/voice"
+TWILIO_URL = "http://api.twilio.com/2010-04-01"
 
 def directions(src, dest, mode="walking", sensor=False):
     src = src.replace(" ", "+")
@@ -37,6 +37,7 @@ def sms(msg):
 
 def call(sid, token, from_, to, url=TWILIO_URL):
     client = TwilioRestClient(sid, token)    
-    call = client.calls.create(to=to, from_=from_, url=url)
+    call = client.calls.create(to=to, from_=from_,
+                               url="%s/Accounts/%s/Calls.json" % (url, sid))
     return call.sid
 
