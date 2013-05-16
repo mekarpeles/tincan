@@ -1,18 +1,39 @@
 #!/usr/bin/env/python
+#-*- coding: utf-8 -*-
+
+"""
+    rest
+    ~~~~
+
+    REST API for tincan application
+"""
 
 import json
 from waltz import web, slender
 from api.v1 import phone
+from conigs.config import TWILIO
 
 urls = ("/tincan/sms/?", "TincanSMS",
-        "/tincan/voice/?", "TincanVoice",
+        "/tincan/voice/(.+)/?", "TincanVoice",
         "/directions/(.*)/(.*)/?", "Directions",
         "/?", "Api",
         "/.*", "Error")
 
 class TincanVoice:
-    def GET(self):
-        return phone.call()
+    def GET(self, number=""):
+        # move number preprocessing phone api or util
+        number = number.replace(".", "").replace("-", "")
+        if not number:
+            # Extend this check to also see if valid #
+            return json.dumps({"status": "error",
+                               "msg": "required args: valid #",
+                               "code": "400 Bad Request",
+                               "exception": "ValueError"
+                               })
+        return phone.call(TWILIO['sid'],
+                          TWILIO['token'], 
+                          TWILIO['number'],
+                          number)
 
 class Directions:
     def GET(self, src=None, dest=None):
