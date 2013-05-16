@@ -26,6 +26,7 @@ setup(
     license='LICENSE',
     install_requires=[
         'waltz >= 0.1.68',
+        'twilio >= 3.4.5'
     ],
     description="Tincan is siri for dumb phones",
     long_description=open(os.path.join(
