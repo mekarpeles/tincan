@@ -9,9 +9,6 @@
 """
 
 import waltz
-import configs import config
-import apps
-
 import subapps.rest as api
 
 urls = (#"/api/v1", api.subapp,
