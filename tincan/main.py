@@ -1,10 +1,20 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+"""
+    main
+    ~~~~
+   
+    Main entry point for the tincan application
+"""
+
 import waltz
-import config
+import configs import config
 import apps
 
-import subapps.v1 as api
+import subapps.rest as api
 
-urls = ("/api/v1", api.subapp,
+urls = (#"/api/v1", api.subapp,
         "/?",     "routes.home.Index",
         ".*",   "Error")
 
